@@ -1,22 +1,23 @@
-package tickect.booking.services;
+package ticket.booking.services;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import tickect.booking.entties.User;
+import ticket.booking.entties.User;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 public class UserBookingService
 {
     private User user;
-    private List<User> userList;
+    private List<User> userList;// to fetch users from localdb
 
     private ObjectMapper objectMapper=new ObjectMapper();
     private  static final String USERS_PATH="../localDb/users.json";
 
-    public UserBookingService(User user1) throws IOException
+    public UserBookingService(User user1) throws IOException   //custom constructor
     {
         this.user=user1;
         File users=new File(USERS_PATH);

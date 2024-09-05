@@ -1,7 +1,7 @@
 [
   {
-    "user_id": "abcdef",
-    "name": "Lovepreet Singh",
+    "user_id": "abc",
+    "name": "John Smith",
     "hashed_password": "12345",
     "tickets_booked": [
       {
