@@ -2,7 +2,9 @@ package ticket.booking.services;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import ticket.booking.entties.Train;
 import ticket.booking.entties.User;
+import ticket.booking.util.UserServiceUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,7 +14,8 @@ import java.util.Optional;
 public class UserBookingService
 {
     private User user;
-    private List<User> userList;// to fetch users from localdb
+    // to fetch users from localdb
+    private List<User> userList;
 
     private ObjectMapper objectMapper=new ObjectMapper();
     private  static final String USERS_PATH="../localDb/users.json";
@@ -20,13 +23,22 @@ public class UserBookingService
     public UserBookingService(User user1) throws IOException   //custom constructor
     {
         this.user=user1;
+        loadUsers();
+    }
+
+    public UserBookingService() throws IOException{
+        loadUsers();
+    }
+
+    public List<User> loadUsers() throws IOException {
         File users=new File(USERS_PATH);
-        userList=objectMapper.readValue(users, new TypeReference<List<User>>() {
+        return objectMapper.readValue(users, new TypeReference<List<User>>() {
         });
     }
+
     public Boolean loginUser(){
         Optional<User> foundUser = userList.stream().filter(user1 -> {
-            return user1.getName().equals(user.getName()) && UserServiceUtil.checkPassword(user.getPassword(), user1.getHashedPassword());
+            return user1.getName().equalsIgnoreCase(user.getName()) && UserServiceUtil.checkPassword(user.getPassword(), user1.getHashedPassword());
         }).findFirst();
         return foundUser.isPresent();
     }
@@ -39,5 +51,25 @@ public class UserBookingService
             return Boolean.FALSE;
         }
     }
+    private void saveUserListToFile() throws IOException {
+        File usersFile = new File(USERS_PATH);
+        objectMapper.writeValue(usersFile, userList);
+    }
 
+    public void fetchBookings(){
+        user.printTickets();
+    }
+
+
+    public Boolean bookTrainSeat(Train trainSelectedForBooking, int row, int col) {
+        return null;
+    }
+
+    public List<List<Integer>> fetchSeats(Train trainSelectedForBooking) {
+        return List.of();
+    }
+
+    public List<Train> getTrains(String source, String dest) {
+        return List.of();
+    }
 }
