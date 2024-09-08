@@ -69,7 +69,7 @@ public class UserBookingService
         return List.of();
     }
 
-    public List<Train> getTrains(String source, String dest) {
+    public List<Train> getTrains(String source, String destination) {
         return List.of();
     }
 }
