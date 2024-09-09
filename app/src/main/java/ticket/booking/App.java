@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.*;
 
 public class App {
-    public static void main(String args[]){
+    public static void main(String[] args){
         System.out.println("Running Train Booking System");
         Scanner in =new Scanner(System.in);
         int option =0;

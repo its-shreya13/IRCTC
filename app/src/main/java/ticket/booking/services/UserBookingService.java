@@ -17,7 +17,7 @@ public class UserBookingService
     // to fetch users from localdb
     private List<User> userList;
 
-    private ObjectMapper objectMapper=new ObjectMapper();
+    private final ObjectMapper objectMapper=new ObjectMapper();
     private  static final String USERS_PATH="../localDb/users.json";
 
     public UserBookingService(User user1) throws IOException   //custom constructor
